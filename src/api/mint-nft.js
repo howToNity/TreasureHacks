@@ -1,4 +1,4 @@
-export function mintNFT() {
+export async function mintNFT({ config, address, }) {
   const traitsType = Object.keys(config)
   const traitsValue = Object.values(config)
   const data = Array.from(traitsType, (key, index) => {

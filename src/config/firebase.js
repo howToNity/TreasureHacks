@@ -42,16 +42,13 @@ async function createUser(username, email, password) {
 
     const usersRef = collection(db, "users");
 
-    if (username.includes(" ")) {
-      throw new Error("Username should not contain spaces.")
-    }
-
     await setDoc(doc(usersRef, user.uid), {
       username,
     });
+    return user
   } catch (err) {
     signOutUser();
-    return err
+    throw new Error(err);
   }
 }
 
@@ -67,11 +64,11 @@ async function signInUser(email, password) {
 
       return data;
     } else {
-      console.log("No such document!");
+      throw new Error('No document found for that user')
     }
   } catch (err) {
     signOutUser();
-    return err;
+    throw new Error(err)
   }
 }
 
