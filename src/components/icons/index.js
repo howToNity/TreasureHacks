@@ -1,0 +1,5 @@
+export { default as FaceIcon } from './FaceIcon'
+export { default as HairIcon } from './HairIcon'
+export { default as HatIcon } from './HatIcon'
+export { default as EyesIcon } from './EyesIcon'
+export { default as EarIcon } from './EarIcon'
