@@ -1,5 +1,17 @@
+import React from 'react'
+
 const Header = () => {
     return (
-        <div className="flex items-center justify-center p-2 mt-6 text-2xl">Tic-Tac-Toe</div>
+        <div style={{
+            display: 'flex',
+            alignItems: 'cemter',
+            justifyContent: 'center',
+            padding: '10px',
+            marginTop: '1.4em',
+            fontWeight: '650',
+            fontSize: '1.4rem'
+        }}>Tic-Tac-Toe</div>
     )
 }
+
+export default Header;
