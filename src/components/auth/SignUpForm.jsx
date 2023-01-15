@@ -1,4 +1,4 @@
-import { Input } from '../Input';
+import { Input } from '../getting_started/Input';
 import { createUser } from '../../config/firebase';
 import { useState } from 'react';
 import { MintFlow } from './MintFlow';

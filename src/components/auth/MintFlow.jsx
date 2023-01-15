@@ -1,9 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { mintNFT } from '../../api/mint-nft';
 import { useWallet } from '../../hooks/useWallet';
 import { AvatarPickerContext } from '../../context/AvatarPickerContext';
+import confetti from 'canvas-confetti'
 
 export function MintFlow() {
+  const [disabled, setDisabled] = useState(false)
   const { address, getAddress } = useWallet();
   const { config } = useContext(AvatarPickerContext)
 
@@ -14,10 +16,15 @@ export function MintFlow() {
       </h3>
       {address ? (
         <div>
-          <WalletButton onClick={() => mintNFT({
-            address,
-            config
-          })}>Mint your Avatar</WalletButton>
+          <WalletButton disabled={disabled} onClick={async () => {
+            setDisabled(true)
+            await mintNFT({
+              address,
+              config
+            })
+            setDisabled(false)
+            confetti()
+          }}>Mint your Avatar</WalletButton>
         </div>
       ) : (
         <div>

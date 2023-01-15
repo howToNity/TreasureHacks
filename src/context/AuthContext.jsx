@@ -15,7 +15,17 @@ export function AuthContextProvider({ children }) {
       } else {
         setUser({ ...user, uid: null });
       }
+
+      if (localStorage.getItem("user") != undefined) {
+        setUser({ ...user, ...JSON.parse(localStorage.getItem("user")) })
+      }
     });
+
+    window.onstorage = (e) => {
+      if (localStorage.getItem("user") != undefined) {
+        setUser({ ...user, ...JSON.parse(localStorage.getItem("user")) })
+      }
+    }
 
     return () => {
       unsubscribe();

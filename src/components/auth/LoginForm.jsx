@@ -1,7 +1,9 @@
-import { Input } from '../Input';
+import { Input } from '../getting_started/Input';
 import { signInUser } from '../../config/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export function LogInForm() {
+  const navigate = useNavigate()
   const handleSignIn = async (e) => {
     e.preventDefault();
     const { email, password } = e.target.elements;
@@ -11,6 +13,7 @@ export function LogInForm() {
     }
     try {
       await signInUser(email.value, password.value);
+      navigate('/me')
     } catch (err) {
       alert(err);
     }

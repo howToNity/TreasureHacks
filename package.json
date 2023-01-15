@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "canvas-confetti": "^1.6.0",
     "firebase": "^9.15.0",
     "postcss": "^8.4.21",
     "react-nice-avatar": "^1.3.1",

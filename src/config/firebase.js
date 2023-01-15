@@ -42,13 +42,18 @@ async function createUser(username, email, password) {
 
     const usersRef = collection(db, "users");
 
-    await setDoc(doc(usersRef, user.uid), {
-      username,
-    });
-    return user
+    if (username.includes(" ")) {
+      throw new Error("Username should not contain spaces.")
+    }
+
+    const payload = { username, currency: 0 }
+
+    await setDoc(doc(usersRef, user.uid), payload);
+
+    localStorage.setItem("user", JSON.stringify(payload))
   } catch (err) {
     signOutUser();
-    throw new Error(err);
+    return err
   }
 }
 
@@ -60,15 +65,16 @@ async function signInUser(email, password) {
 
     if (docSnap.exists()) {
       const data = docSnap.data();
+      console.log(data)
       localStorage.setItem("user", JSON.stringify(data));
 
       return data;
     } else {
-      throw new Error('No document found for that user')
+      console.log("No such document!");
     }
   } catch (err) {
     signOutUser();
-    throw new Error(err)
+    return err;
   }
 }
 
@@ -79,6 +85,9 @@ function signOutUser() {
 
 async function addDataToUser(uid, data) {
   const userRef = doc(db, "users", uid);
+  localStorage.setItem("user", JSON.stringify(
+    { ...JSON.parse(localStorage.getItem("user")), ...data }
+  ))
   await setDoc(userRef, data, { merge: true });
 }
 

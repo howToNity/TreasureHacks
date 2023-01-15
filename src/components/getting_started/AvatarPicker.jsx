@@ -6,9 +6,9 @@ import {
   FaceIcon,
   HairIcon,
   HatIcon,
-} from '../components/icons';
+} from '../icons';
 import { useContext } from 'react';
-import { AvatarPickerContext } from '../context/AvatarPickerContext';
+import { AvatarPickerContext } from '../../context/AvatarPickerContext';
 
 export function AvatarPicker() {
   const { config, changeSkin, changeHair, changeHat, changeEyes, changeEars } =
