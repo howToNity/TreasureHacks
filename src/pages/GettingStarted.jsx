@@ -22,12 +22,8 @@ const GettingStarted = () => {
   const getStarted = async (e) => {
     e.preventDefault();
     const { username, email, password } = e.target.elements
-    // if ([username.value, email.value, password.value].includes('')) {
-    //   alert('Please fill out the form')
-    //   return
-    // }
     const response = await createUser(username.value, email.value, password.value)
-    if(response.err){ console.log(response.err)}
+    localStorage.setItem("avatar", JSON.stringify(config))
   }
 
   return (

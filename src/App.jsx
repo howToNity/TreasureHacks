@@ -10,15 +10,16 @@ export const AuthContext = createContext();
 
 
 export default function App() {
-  const [user, setUser] = useState({ uid: null });
+  const [uid, setUid] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        setUser({ ...user, uid })
+        setUid(uid)
       } else {
-        setUser({ ...user, uid: null });
+        setUid(null);
       }
     });
 
@@ -26,7 +27,7 @@ export default function App() {
       storedUserData = JSON.parse(localStorage.getItem("user"))
       setUser({ ...user, ...storedUserData })
     })
-  }, [user]);
+  }, [uid]);
 
 
   return <AuthContext.Provider value={user}>

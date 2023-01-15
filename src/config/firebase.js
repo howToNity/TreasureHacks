@@ -49,6 +49,8 @@ async function createUser(username, email, password) {
     await setDoc(doc(usersRef, user.uid), {
       username,
     });
+
+    localStorage.setItem("user", JSON.stringify({ username }))
   } catch (err) {
     signOutUser();
     return err
